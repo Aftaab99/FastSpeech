@@ -13,7 +13,6 @@ import utils
 import dataset
 import text
 import model as M
-import waveglow
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -22,7 +21,7 @@ def get_DNN(num):
     checkpoint_path = "checkpoint_" + str(num) + ".pth.tar"
     model = nn.DataParallel(M.FastSpeech()).to(device)
     model.load_state_dict(torch.load(os.path.join(hp.checkpoint_path,
-                                                  checkpoint_path))['model'])
+                                                  checkpoint_path), map_location='cpu')['model'])
     model.eval()
     return model
 
@@ -32,8 +31,8 @@ def synthesis(model, text, alpha=1.0):
     text = np.stack([text])
     src_pos = np.array([i+1 for i in range(text.shape[1])])
     src_pos = np.stack([src_pos])
-    sequence = torch.from_numpy(text).cuda().long()
-    src_pos = torch.from_numpy(src_pos).cuda().long()
+    sequence = torch.from_numpy(text).long()
+    src_pos = torch.from_numpy(src_pos).long()
 
     with torch.no_grad():
         _, mel = model.module.forward(sequence, src_pos, alpha=alpha)
@@ -59,7 +58,6 @@ def get_data():
 
 if __name__ == "__main__":
     # Test
-    WaveGlow = utils.get_WaveGlow()
     parser = argparse.ArgumentParser()
     parser.add_argument('--step', type=int, default=0)
     parser.add_argument("--alpha", type=float, default=1.0)
@@ -74,15 +72,6 @@ if __name__ == "__main__":
             os.mkdir("results")
         audio.tools.inv_mel_spec(
             mel, "results/"+str(args.step)+"_"+str(i)+".wav")
-        waveglow.inference.inference(
-            mel_cuda, WaveGlow,
-            "results/"+str(args.step)+"_"+str(i)+"_waveglow.wav")
+        
         print("Done", i + 1)
 
-    s_t = time.perf_counter()
-    for i in range(100):
-        for _, phn in enumerate(data_list):
-            _, _, = synthesis(model, phn, args.alpha)
-        print(i)
-    e_t = time.perf_counter()
-    print((e_t - s_t) / 100.)
