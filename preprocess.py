@@ -3,8 +3,8 @@ import numpy as np
 import shutil
 import os
 
-from data import ljspeech
-import hparams as hp
+from FastSpeech.data import ljspeech
+import FastSpeech.hparams as hp
 
 
 def preprocess_ljspeech(filename):

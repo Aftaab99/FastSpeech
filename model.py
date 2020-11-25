@@ -1,11 +1,11 @@
 import torch
 import torch.nn as nn
-import hparams as hp
-import utils
+import FastSpeech.hparams as hp
+import FastSpeech.utils
 
-from transformer.Models import Encoder, Decoder
-from transformer.Layers import Linear, PostNet
-from modules import LengthRegulator, CBHG
+from FastSpeech.transformer.Models import Encoder, Decoder
+from FastSpeech.transformer.Layers import Linear, PostNet
+from FastSpeech.modules import LengthRegulator, CBHG
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

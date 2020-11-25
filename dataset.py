@@ -10,9 +10,9 @@ import os
 import hparams
 import audio
 
-from utils import process_text, pad_1D, pad_2D
-from utils import pad_1D_tensor, pad_2D_tensor
-from text import text_to_sequence
+from FastSpeech.utils import process_text, pad_1D, pad_2D
+from FastSpeech.utils import pad_1D_tensor, pad_2D_tensor
+from FastSpeech.text import text_to_sequence
 from tqdm import tqdm
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

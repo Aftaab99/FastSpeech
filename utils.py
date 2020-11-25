@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import numpy as np
 import os
 
-import hparams
+import FastSpeech.hparams
 
 
 def process_text(train_text_path):

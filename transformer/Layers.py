@@ -4,8 +4,8 @@ from torch.nn import functional as F
 import numpy as np
 from collections import OrderedDict
 
-from transformer.SubLayers import MultiHeadAttention, PositionwiseFeedForward
-from text.symbols import symbols
+from FastSpeech.transformer.SubLayers import MultiHeadAttention, PositionwiseFeedForward
+from FastSpeech.text.symbols import symbols
 
 
 class Linear(nn.Module):

@@ -1,10 +1,10 @@
 import torch
 import torch.nn as nn
 import numpy as np
-import hparams as hp
+import FastSpeech.hparams as hp
 
-import transformer.Constants as Constants
-from transformer.Layers import FFTBlock, PreNet, PostNet, Linear
+import FastSpeech.transformer.Constants as Constants
+from FastSpeech.transformer.Layers import FFTBlock, PreNet, PostNet, Linear
 
 
 def get_non_pad_mask(seq):

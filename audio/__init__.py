@@ -1,4 +1,5 @@
-import audio.hparams_audio
-import audio.tools
-import audio.stft
-import audio.audio_processing
+import FastSpeech.audio.hparams_audio
+import FastSpeech.audio.tools
+import FastSpeech.audio.stft
+import FastSpeech.audio.audio_processing
+

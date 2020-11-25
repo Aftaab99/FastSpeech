@@ -7,12 +7,20 @@ import time
 import shutil
 import os
 
-import hparams as hp
-import audio
-import utils
-import dataset
-import text
-import model as M
+import torch
+import torch.nn as nn
+import argparse
+import numpy as np
+import random
+import time
+import shutil
+import os
+
+import FastSpeech.hparams as hp
+import FastSpeech.audio as audio
+import FastSpeech.utils as utils
+import FastSpeech.text as text
+import FastSpeech.model as M
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 

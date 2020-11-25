@@ -1,5 +1,5 @@
-import transformer.Constants
-import transformer.Modules
-import transformer.Layers
-import transformer.SubLayers
-import transformer.Models
+import FastSpeech.transformer.Constants
+import FastSpeech.transformer.Modules
+import FastSpeech.transformer.Layers
+import FastSpeech.transformer.SubLayers
+import FastSpeech.transformer.Models
